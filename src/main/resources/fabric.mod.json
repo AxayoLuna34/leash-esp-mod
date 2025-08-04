@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "leash-esp-mod",
-	"version": "1.0-beta",
+	"version": "1.0",
 	"name": "LeashESP Mod",
 	"description": "LeashESP Mod is a lightweight mod that highlights current leashed entities and shows count of them",
 	"authors": ["AxayoLuna34"],
@@ -17,12 +17,17 @@
 		],
 		"client": [
 			"net.leashesp.mod.AutoInitializer"
+		],
+		"modmenu": [
+			"net.leashesp.mod.ModConfig"
 		]
 	},
 	"depends": {
 		"fabricloader": ">=0.16.10",
 		"minecraft": ">=1.21.2 <=1.21.4",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"cloth-config": ">=16.0.141 <=17.0.144",
+		"modmenu": ">=12.0.0 <=13.0.3"
 	},
 	"suggests": {
 		"another-mod": "*"

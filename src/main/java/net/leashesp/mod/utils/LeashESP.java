@@ -1,4 +1,4 @@
-package net.leashesp.mod;
+package net.leashesp.mod.utils;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.ClientModInitializer;
@@ -16,9 +16,9 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.leashesp.mod.*;
 
 public class LeashESP implements ClientModInitializer {
-    public static boolean isEnabled = false;
     private static int lastLeashedEntityCount = 0;
     private static long warningEndTime = 0;
     private static long additionEndTime = 0;
@@ -26,35 +26,26 @@ public class LeashESP implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         LeashESPConfig.init();
-        isEnabled = LeashESPConfig.isLeashESPEnabled();
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (client.player != null) {
+            if (client.player != null && LeashESPConfig.getBoolean("showEntityCounter", true)) {
                 updateLeashedEntityCount(client.player);
             }
         });
 
         WorldRenderEvents.AFTER_ENTITIES.register(context -> {
             MinecraftClient client = MinecraftClient.getInstance();
-            if (client.player != null && isEnabled) {
+            if (client.player != null && LeashESPConfig.getBoolean("showEntityOutline", true)) {
                 drawLeadTracers(client.player, context.camera(), context.matrixStack(), 0);
             }
         });
     }
 
-    public static void toggleBetterLead(boolean enabled) {
-        isEnabled = enabled;
-        LeashESPConfig.setLeashESPEnabled(enabled);
-    }
-
     public static void updateLeashedEntityCount(PlayerEntity player) {
-        if (!isEnabled) {
-            return;
-        }
-
         World world = player.getEntityWorld();
-        Box box = new Box(player.getBlockPos()).expand(10); // Adjust the range as needed
+        Box box = new Box(player.getBlockPos()).expand(10);
         int leashedEntityCount = 0;
+
 
         // Leashed Mobs
         for (Entity entity : world.getEntitiesByClass(MobEntity.class, box, mob -> mob.isLeashed() && mob.getLeashHolder() == player)) {
@@ -72,7 +63,9 @@ public class LeashESP implements ClientModInitializer {
         }
 
         // Check if a new entity was leashed
-        if (leashedEntityCount > lastLeashedEntityCount && leashedEntityCount > 1) {
+        if (leashedEntityCount < lastLeashedEntityCount) {
+            warningEndTime = System.currentTimeMillis() + 1250;
+        } else if (leashedEntityCount > lastLeashedEntityCount && leashedEntityCount > 1) {
             additionEndTime = System.currentTimeMillis() + 1250;
         }
 
@@ -131,8 +124,11 @@ public class LeashESP implements ClientModInitializer {
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
 
+        float transparency = LeashESPConfig.getFloat("transparencyLevel", 0.5f);
+        int a = LeashESPConfig.getInt("transparencyLevel", 128);
+
         float distance = (float) player.distanceTo(entity);
-        int r = 0, g = 255, b = 0, a = 128;
+        int r = 0, g = 255, b = 0;
 
         if (distance > 8) {
             r = 255;

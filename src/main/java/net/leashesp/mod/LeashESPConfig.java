@@ -72,4 +72,34 @@ public class LeashESPConfig {
             parentDir.mkdirs();
         }
     }
+
+    public static boolean getBoolean(String key, boolean defaultValue) {
+        Object value = config.get(key);
+        return value instanceof Boolean ? (Boolean) value : defaultValue;
+    }
+
+    public static void setBoolean(String key, boolean value) {
+        config.put(key, value);
+        save();
+    }
+
+    public static float getFloat(String key, float defaultValue) {
+        Object value = config.get(key);
+        return value instanceof Number ? ((Number) value).floatValue() : defaultValue;
+    }
+
+    public static void setFloat(String key, float value) {
+        config.put(key, value);
+        save();
+    }
+
+    public static int getInt(String key, int defaultValue) {
+        Object value = config.get(key);
+        return value instanceof Number ? ((Number) value).intValue() : defaultValue;
+    }
+
+    public static void setInt(String key, int value) {
+        config.put(key, value);
+        save();
+    }
 }

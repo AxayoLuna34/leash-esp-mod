@@ -2,6 +2,7 @@ package net.leashesp.mod;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
+import net.leashesp.mod.utils.LeashESP;
 
 public class AutoInitializer implements ModInitializer, ClientModInitializer {
     @Override
