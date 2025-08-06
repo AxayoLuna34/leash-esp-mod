@@ -1,4 +1,4 @@
-package net.leashesp.mod;
+package net.leashedmobtracker;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

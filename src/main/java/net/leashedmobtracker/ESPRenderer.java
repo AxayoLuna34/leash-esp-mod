@@ -1,4 +1,4 @@
-package net.leashesp.mod;
+package net.leashedmobtracker;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gl.ShaderProgramKeys;

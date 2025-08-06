@@ -1,8 +1,8 @@
-package net.leashesp.mod;
+package net.leashedmobtracker;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
-import net.leashesp.mod.utils.LeashESP;
+import net.leashedmobtracker.utils.LeashESP;
 
 public class AutoInitializer implements ModInitializer, ClientModInitializer {
     @Override

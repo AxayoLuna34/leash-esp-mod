@@ -1,4 +1,4 @@
-package net.leashesp.mod;
+package net.leashedmobtracker;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
