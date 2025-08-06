@@ -1,6 +1,6 @@
-# LeashESP Mod
+# Leashed Mob Tracker Mod
 
-**LeashESP Mod** is a lightweight client-side mod that highlights all currently **leashed entities** and shows their total count on screen.
+**Leashed Mob Tracker Mod** (previously LeashESP Mod) is a lightweight client-side mod that highlights all currently **leashed entities** and shows their total count on screen.
 
 ---
 
@@ -26,7 +26,7 @@
 
 ## 🛠️ Installation
 
-1. Download the `.jar` file from the [Releases](https://github.com/AxayoLuna34/leash-esp-mod/releases)
+1. Download the `.jar` file from the [Releases](https://github.com/AxayoLuna34/leashed-mob-tracker/releases)
 2. Place it in your `mods` folder
 3. Launch Minecraft with Fabric
 4. Toggle mod using the **`M` key** — this shortcut can be customized in Minecraft’s **Controls > Key Binds** menu, or just open your mod menu and open modconfig by clicking logo
@@ -36,6 +36,8 @@
 Versions for **1.21.x** coming soon !
 
 ---
+
+
 
 ## 👤 Author
 
